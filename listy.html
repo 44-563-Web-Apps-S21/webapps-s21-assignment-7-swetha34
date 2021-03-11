@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html> 
+<head>
+    <title>LIST OF ELEMENTS </title> 
+    <style>
+    .flex-container {
+      display: flex;  flex-direction:row;
+      color:rgb(22, 240, 22);
+  }
+
+.flex-container > div {  /*div children of the flex container*/
+  background-color: rgb(90, 66, 112); 
+  margin: 10px;  padding: 20px;  font-size: 30px;
+}
+
+/* Responsive layout */
+@media (max-width: 600px) { 
+	 .flex-container{
+		 flex-direction:column;
+		 background-color: rgb(139, 55, 72);
+	  }
+	}
+</style>
+</head>
+
+
+
+<body>
+    <h1>GAHANA SWETHA SANAGALA BUILDS A LIST</h1>
+
+    <input type="text" id="inputList" ></input>
+
+		<div class="flex-container" id="target">
+		  <div class="listy">ITEM 1</div>   
+		  <div class="listy">ITEM 2</div>  
+		  <div class="listy">ITEM 3</div>  
+		</div>
+	
+	<p> To create a element of type div enter the button and add to container.</p>
+		<button onclick="makeNewDiv()">ADD ONE</button>
+	
+	
+</body>
+<script>
+	function makeNewDiv(){
+		/* make the div and its text */
+		let element = document.createElement("div")
+        element.innerHTML = document.getElementById("inputList").value
+		element.className = "listy"
+
+        var listItems = document.getElementsByClassName("listy")
+		var check = 0
+
+        if (listItems.length > 9) {
+
+for (let item of listItems) {
+    console.log(item.innerHTML)
+    if (item.innerHTML === document.getElementById("inputList").value) {
+        item.remove();
+        console.log("We are getting rid of duplicates.");
+        check = 1;
+        break;
+    }
+}
+if (check == 9) {
+				var removeItem = getRandomIntInclusive(0, 9);
+				console.log(removeItem);
+
+				listItems[removeItem].remove();
+				console.log("We get rid of the " + removeItem + " item.");
+			}
+
+		}
+
+		document.getElementById('target').appendChild(element)
+
+	}
+
+	function getRandomIntInclusive(min, max) {
+		min = Math.ceil(min);
+		max = Math.floor(max);
+		return Math.floor(Math.random() * (max - min + 1) + min); 
+	}
+		
+</script>
+</html>	
